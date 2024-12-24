@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Портфолио ученика</title>
+  <link href="output.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .subject-stat {
+      display: none;
+    }
+    .subject-stat.show {
+      display: block;
+    }
+    .subject-stat canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+    .achievement-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      gap: 8px;
+    }
+    .achievement-buttons button {
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+  <!-- Header -->
+  <div class="bg-white text-gray-800 py-6">
+    <div class="max-w-6xl mx-auto px-6">
+      <h1 class="text-3xl font-bold">Портфолио ученика: Иванов Иван Иванович</h1>
+      <div class="mt-6">
+        <a href="student-dashboard.html" class="text-blue-500 hover:underline">Вернуться в кабинет</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-6xl mx-auto px-6 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+      <!-- Статистика по предметам -->
+      <div class="bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Статистика по предметам</h2>
+  
+        <div class="flex space-x-4 mb-6">
+          <button id="mathBtn" class="bg-green-500 text-white px-4 py-2 rounded-lg">Математика</button>
+          <button id="russianBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg">Русский язык</button>
+          <button id="historyBtn" class="bg-yellow-500 text-white px-4 py-2 rounded-lg">История</button>
+        </div>
+  
+        <div id="subjectStat" class="space-y-4">
+          <!-- Математика -->
+          <div id="mathStat" class="subject-stat">
+            <h3 class="text-lg font-semibold text-gray-700">Математика:</h3>
+            <canvas id="mathChart" width="400" height="200"></canvas>
+            <p class="text-gray-700 mt-2">Средняя оценка: 4.5</p>
+          </div>
+  
+          <!-- Русский язык -->
+          <div id="russianStat" class="subject-stat">
+            <h3 class="text-lg font-semibold text-gray-700">Русский язык:</h3>
+            <canvas id="russianChart" width="400" height="200"></canvas>
+            <p class="text-gray-700 mt-2">Средняя оценка: 4.7</p>
+          </div>
+  
+          <!-- История -->
+          <div id="historyStat" class="subject-stat">
+            <h3 class="text-lg font-semibold text-gray-700">История:</h3>
+            <canvas id="historyChart" width="400" height="200"></canvas>
+            <p class="text-gray-700 mt-2">Средняя оценка: 4.2</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Достижения -->
+      <div class="bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Достижения</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Грамота 1 -->
+          <div class="bg-gray-100 p-4 rounded-lg shadow-lg">
+            <img src="https://via.placeholder.com/150" alt="Грамота" class="w-full h-36 object-cover rounded-lg mb-4">
+            <p class="text-center text-lg font-semibold">Грамота за победу в олимпиаде</p>
+            <div class="achievement-buttons">
+              <button class="bg-blue-500 text-white">
+                <i class="fas fa-info-circle"></i>
+              </button>
+              <button class="bg-green-500 text-white">
+                <i class="fas fa-print"></i>
+              </button>
+            </div>
+          </div>
+          <!-- Грамота 2 -->
+          <div class="bg-gray-100 p-4 rounded-lg shadow-lg">
+            <img src="https://via.placeholder.com/150" alt="Грамота" class="w-full h-36 object-cover rounded-lg mb-4">
+            <p class="text-center text-lg font-semibold">Медаль за достижения в учебе</p>
+            <div class="achievement-buttons">
+              <button class="bg-blue-500 text-white">
+                <i class="fas fa-info-circle"></i>
+              </button>
+              <button class="bg-green-500 text-white">
+                <i class="fas fa-print"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Динамика оценок с выбором предмета -->
+    <div class="mt-10 bg-white shadow-lg rounded-lg p-6">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Динамика оценок</h2>
+
+      <select id="subjectSelect" class="bg-white border border-gray-300 rounded-lg p-2 mb-6">
+        <option value="math">Математика</option>
+        <option value="russian">Русский язык</option>
+        <option value="history">История</option>
+      </select>
+
+      <canvas id="ratingTrendChart" width="400" height="200"></canvas>
+    </div>
+    
+    <!-- Домашние задания -->
+    <div class="mt-10 bg-white shadow-lg rounded-lg p-6">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Домашние задания</h2>
+
+      <!-- Невыполненные задания -->
+      <div class="bg-gray-50 rounded-lg p-4 shadow mb-6">
+        <h2 class="text-lg font-semibold text-gray-700 mb-2">Невыполненные</h2>
+
+        <!-- Математика -->
+        <div>
+          <h3 class="text-md font-semibold text-gray-700">Математика</h3>
+          <ul class="space-y-2">
+            <li class="p-2 bg-white rounded-lg shadow flex justify-between items-center">
+              <span>Решите уравнение: <strong>2x + 5 = 15</strong></span>
+              <span class="text-green-500">Срок: 30.12.2024</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Геометрия -->
+        <div>
+          <h3 class="text-md font-semibold text-gray-700">Математика</h3>
+          <ul class="space-y-2">
+            <li class="p-2 bg-white rounded-lg shadow flex justify-between items-center">
+              <span>Вычислите площадь треугольника: <strong>основание 6 см, высота 4 см</strong></span>
+              <span class="text-green-500">Срок: 28.12.2024</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Просроченные задания -->
+      <div class="bg-red-100 rounded-lg p-4 shadow mb-6">
+        <h2 class="text-lg font-semibold text-gray-700 mb-2">Просроченные</h2>
+
+        <!-- Математика -->
+        <div>
+          <h3 class="text-md font-semibold text-gray-700">Математика</h3>
+          <ul class="space-y-2">
+            <li class="p-2 bg-white rounded-lg shadow flex justify-between items-center">
+              <span>Таблица умножения: заполните недостающие значения</span>
+              <span class="text-red-500">Срок: 15.12.2024</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Литература -->
+        <div>
+          <h3 class="text-md font-semibold text-gray-700">Русский язык</h3>
+          <ul class="space-y-2">
+            <li class="p-2 bg-white rounded-lg shadow flex justify-between items-center">
+              <span>Прочитать рассказ Чехова "Дама с собачкой"</span>
+              <span class="text-red-500">Срок: 10.12.2024</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Инициализация графиков и динамическая смена контента
+    const mathChartCtx = document.getElementById('mathChart').getContext('2d');
+    const russianChartCtx = document.getElementById('russianChart').getContext('2d');
+    const historyChartCtx = document.getElementById('historyChart').getContext('2d');
+    const ratingTrendCtx = document.getElementById('ratingTrendChart').getContext('2d');
+
+    // Данные для графиков
+    const mathChart = new Chart(mathChartCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Сент', 'Окт', 'Ноя', 'Дек'],
+        datasets: [{
+          label: 'Оценки',
+          data: [4, 5, 4, 5],
+          backgroundColor: '#34D399',
+          borderColor: '#34D399',
+          borderWidth: 1
+        }]
+      },
+    });
+
+    const russianChart = new Chart(russianChartCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Сент', 'Окт', 'Ноя', 'Дек'],
+        datasets: [{
+          label: 'Оценки',
+          data: [5, 4, 5, 4],
+          backgroundColor: '#F87171',
+          borderColor: '#F87171',
+          borderWidth: 1
+        }]
+      },
+    });
+
+    const historyChart = new Chart(historyChartCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Сент', 'Окт', 'Ноя', 'Дек'],
+        datasets: [{
+          label: 'Оценки',
+          data: [3, 4, 3, 4],
+          backgroundColor: '#FBBF24',
+          borderColor: '#FBBF24',
+          borderWidth: 1
+        }]
+      },
+    });
+
+    const ratingTrendChart = new Chart(ratingTrendCtx, {
+      type: 'line',
+      data: {
+        labels: ['Сент', 'Окт', 'Ноя', 'Дек'],
+        datasets: [{
+          label: 'Оценки по предмету',
+          data: [4.2, 4.5, 4.7, 4.8],
+          backgroundColor: 'rgba(99, 102, 241, 0.2)',
+          borderColor: '#6366F1',
+          borderWidth: 2
+        }]
+      },
+    });
+
+    // Обработка переключения статистики по предметам
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', function () {
+        const subject = this.id.replace('Btn', '');
+        document.querySelectorAll('.subject-stat').forEach(stat => stat.classList.remove('show'));
+        document.getElementById(subject + 'Stat').classList.add('show');
+      });
+    });
+  </script>
+</body>
+</html>

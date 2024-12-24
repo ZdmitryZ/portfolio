@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Входящие задания</title>
+  <link href="output.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+  <style>
+    .task-card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .task-card .task-info {
+      max-width: 70%;
+    }
+    .task-card button {
+      font-size: 14px;
+      padding: 8px 12px;
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <!-- Header -->
+  <div class="bg-white shadow py-6">
+    <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Входящие задания</h1>
+      <a href="teacher-dashboard.html" class="text-blue-500 hover:underline">Вернуться в кабинет</a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-6xl mx-auto px-6 py-10">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-xl font-semibold">Список заданий</h2>
+    </div>
+
+    <!-- Task Cards -->
+    <div class="task-card">
+      <div class="task-info">
+        <h3 class="text-lg font-bold">Задание: Решение задач по математике</h3>
+        <p class="text-gray-600">Ученик: Иван Иванов</p>
+        <p class="text-gray-500">Отправлено: 24 декабря 2024</p>
+      </div>
+      <div>
+        <button class="bg-green-500 text-white px-4 py-2 rounded shadow hover:bg-green-600">Оценить</button>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600">Посмотреть</button>
+        <button class="bg-red-500 text-white px-4 py-2 rounded shadow hover:bg-red-600">Удалить</button>
+      </div>
+    </div>
+
+    <div class="task-card">
+      <div class="task-info">
+        <h3 class="text-lg font-bold">Задание: Сочинение на тему "Зима"</h3>
+        <p class="text-gray-600">Ученик: Мария Смирнова</p>
+        <p class="text-gray-500">Отправлено: 23 декабря 2024</p>
+      </div>
+      <div>
+        <button class="bg-green-500 text-white px-4 py-2 rounded shadow hover:bg-green-600">Оценить</button>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600">Посмотреть</button>
+        <button class="bg-red-500 text-white px-4 py-2 rounded shadow hover:bg-red-600">Удалить</button>
+      </div>
+    </div>
+
+    <!-- No tasks message -->
+    <div class="text-center text-gray-500 mt-6">
+      <p>Нет новых заданий.</p>
+    </div>
+  </div>
+
+  <script>
+    // Add sorting and filtering functionality later if needed.
+  </script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Портфолио учителя</title>
+  <link href="output.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .subject-stat {
+      display: none;
+    }
+    .subject-stat.show {
+      display: block;
+    }
+    .subject-stat canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+    .achievement-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      gap: 8px;
+    }
+    .achievement-buttons button {
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+    .teacher-info, .classes-info {
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin: 20px 0;
+      transition: transform 0.3s ease-in-out;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .achievement-card {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .achievement-card:hover {
+      transform: scale(1.05);
+    }
+
+    .achievement-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .achievement-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .achievement-buttons {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .accordion-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+
+    .accordion-button:after {
+      content: '\25BC';
+      float: right;
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border: 1px solid #ddd;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+
+    .accordion-content.show {
+      display: block;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+  <!-- Header -->
+  <div class="bg-white text-gray-800 py-6">
+    <div class="max-w-6xl mx-auto px-6">
+      <h1 class="text-3xl font-bold">Портфолио учителя: Петров Петр Петрович</h1>
+      <div class="mt-6">
+        <a href="teacher-dashboard.html" class="text-blue-500 hover:underline">Вернуться в кабинет</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-6xl mx-auto px-6 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+      <!-- Информация о стаже -->
+      <div class="card teacher-info">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Информация о стаже</h2>
+        <p class="text-gray-700">Стаж работы: 10 лет</p>
+        <p class="text-gray-700">Специализация: Математика, Физика</p>
+        <p class="text-gray-700">Образование: Высшее, Московский педагогический университет</p>
+      </div>
+
+      <!-- Достижения -->
+      <div class="card">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Достижения</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Грамота 1 -->
+          <div class="achievement-card">
+            <img src="https://via.placeholder.com/150" alt="Грамота">
+            <p class="achievement-title">Грамота за успехи в педагогической деятельности</p>
+            <div class="achievement-buttons">
+              <button class="bg-blue-500 text-white">
+                <i class="fas fa-info-circle"></i>
+              </button>
+              <button class="bg-green-500 text-white">
+                <i class="fas fa-print"></i>
+              </button>
+            </div>
+          </div>
+          <!-- Грамота 2 -->
+          <div class="achievement-card">
+            <img src="https://via.placeholder.com/150" alt="Грамота">
+            <p class="achievement-title">Медаль за педагогическое мастерство</p>
+            <div class="achievement-buttons">
+              <button class="bg-blue-500 text-white">
+                <i class="fas fa-info-circle"></i>
+              </button>
+              <button class="bg-green-500 text-white">
+                <i class="fas fa-print"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Классы -->
+      <div class="card classes-info">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Количество классов</h2>
+        <p class="text-gray-700">Учитель ведет 4 класса: 5А, 6Б, 7В, 8Г.</p>
+        <button class="accordion-button">Подробнее о классах</button>
+        <div class="accordion-content">
+          <p>Данный раздел может содержать дополнительную информацию, например, о количестве учеников, особенностях преподавания и т. д.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    // Accordion functionality
+    const accordionButton = document.querySelector('.accordion-button');
+    const accordionContent = document.querySelector('.accordion-content');
+
+    accordionButton.addEventListener('click', () => {
+      accordionContent.classList.toggle('show');
+      const isOpen = accordionContent.classList.contains('show');
+      accordionButton.textContent = isOpen ? 'Скрыть подробности' : 'Подробнее о классах';
+    });
+  </script>
+
+</body>
+</html>
