@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+      <h1 class="text-2xl font-bold text-gray-700 text-center mb-6">Вход</h1>
+      <form id="loginForm">
+        <div class="mb-4">
+          <label for="username" class="block text-gray-600 mb-2">Логин</label>
+          <input 
+            type="text" 
+            id="username" 
+            name="username" 
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+            placeholder="Введите логин">
+        </div>
+        <div class="mb-4">
+          <label for="password" class="block text-gray-600 mb-2">Пароль</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+            placeholder="Введите пароль">
+        </div>
+        <div class="mb-4">
+          <button 
+            type="button" 
+            id="submitButton"
+            class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+            Войти
+          </button>
+        </div>
+      </form>
+      <div class="mt-6">
+        <p class="text-gray-600 text-center mb-4">Выберите свою роль:</p>
+        <div class="flex justify-around">
+          <button 
+            class="role-button flex items-center bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition focus:ring-2 focus:ring-green-300"
+            data-role="parent">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 21v-2a4 4 0 00-8 0v2m8-10a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            Родитель
+          </button>
+          <button 
+            class="role-button flex items-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition focus:ring-2 focus:ring-blue-300"
+            data-role="student">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 7v-6m0 0l-3.5-2m3.5 2l3.5-2" />
+            </svg>
+            Ученик
+          </button>
+          <button 
+            class="role-button flex items-center bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition focus:ring-2 focus:ring-purple-300"
+            data-role="teacher">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16v-1a4 4 0 013.5-3.97M12 12h2a4 4 0 012.5.93m-2.5.93V20m0 0l-4-4m4 4l4-4" />
+            </svg>
+            Учитель
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <script>
+      let selectedRole = null;
+  
+      // Добавление обработчика на кнопки выбора роли
+      document.querySelectorAll('.role-button').forEach(button => {
+        button.addEventListener('click', () => {
+          document.querySelectorAll('.role-button').forEach(btn => btn.classList.remove('ring', 'ring-offset-2', 'ring-blue-500'));
+          button.classList.add('ring', 'ring-offset-2', 'ring-blue-500');
+          selectedRole = button.getAttribute('data-role');
+        });
+      });
+  
+      // Переход на соответствующую страницу при нажатии "Войти"
+      document.getElementById('submitButton').addEventListener('click', () => {
+        if (!selectedRole) {
+          alert('Пожалуйста, выберите свою роль!');
+          return;
+        }
+        const rolePages = {
+          parent: 'parent-dashboard.html',
+          student: 'student-dashboard.html',
+          teacher: 'teacher-dashboard.html'
+        };
+        window.location.href = rolePages[selectedRole];
+      });
+    </script>
+  </body>       
+</html>

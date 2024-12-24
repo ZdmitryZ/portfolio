@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Портфолио ученика</title>
+  <link href="output.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .subject-stat {
+      display: none;
+    }
+    .subject-stat.show {
+      display: block;
+    }
+    .subject-stat canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+    .achievement-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      gap: 8px;
+    }
+    .achievement-buttons button {
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+  <!-- Header -->
+  <div class="bg-white text-gray-800 py-6">
+    <div class="max-w-6xl mx-auto px-6">
+      <h1 class="text-3xl font-bold">Портфолио ученика: Иванов Иван Иванович</h1>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-6xl mx-auto px-6 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+     <!-- Статистика по предметам -->
+<div class="bg-white shadow-lg rounded-lg p-6">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Статистика по предметам</h2>
+  
+    <div class="flex space-x-4 mb-6">
+      <button id="mathBtn" class="bg-green-500 text-white px-4 py-2 rounded-lg">Математика</button>
+      <button id="russianBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg">Русский язык</button>
+      <button id="historyBtn" class="bg-yellow-500 text-white px-4 py-2 rounded-lg">История</button>
+    </div>
+  
+    <div id="subjectStat" class="space-y-4">
+      <!-- Математика -->
+      <div id="mathStat" class="subject-stat">
+        <h3 class="text-lg font-semibold text-gray-700">Математика:</h3>
+        <canvas id="mathChart" width="400" height="200"></canvas>
+        <p class="text-gray-700 mt-2">Средняя оценка: 4.5</p>
+      </div>
+  
+      <!-- Русский язык -->
+      <div id="russianStat" class="subject-stat">
+        <h3 class="text-lg font-semibold text-gray-700">Русский язык:</h3>
+        <canvas id="russianChart" width="400" height="200"></canvas>
+        <p class="text-gray-700 mt-2">Средняя оценка: 4.7</p>
+      </div>
+  
+      <!-- История -->
+      <div id="historyStat" class="subject-stat">
+        <h3 class="text-lg font-semibold text-gray-700">История:</h3>
+        <canvas id="historyChart" width="400" height="200"></canvas>
+        <p class="text-gray-700 mt-2">Средняя оценка: 4.2</p>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Инициализация графиков
+    const mathCtx = document.getElementById('mathChart').getContext('2d');
+    const russianCtx = document.getElementById('russianChart').getContext('2d');
+    const historyCtx = document.getElementById('historyChart').getContext('2d');
+  
+    const mathChart = new Chart(mathCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+        datasets: [{
+          label: 'Оценки по математике',
+          data: [4.2, 4.5, 4.7, 4.8],
+          backgroundColor: 'rgba(59, 130, 246, 0.5)',
+          borderColor: 'rgba(59, 130, 246, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true
+      }
+    });
+  
+    const russianChart = new Chart(russianCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+        datasets: [{
+          label: 'Оценки по русскому языку',
+          data: [4.3, 4.6, 4.8, 4.9],
+          backgroundColor: 'rgba(244, 67, 54, 0.5)',
+          borderColor: 'rgba(244, 67, 54, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true
+      }
+    });
+  
+    const historyChart = new Chart(historyCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+        datasets: [{
+          label: 'Оценки по истории',
+          data: [4.1, 4.4, 4.6, 4.7],
+          backgroundColor: 'rgba(255, 235, 59, 0.5)',
+          borderColor: 'rgba(255, 235, 59, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true
+      }
+    });
+  
+    // Скрытие и отображение статистики по предметам
+    document.getElementById('mathBtn').onclick = function () {
+      document.querySelectorAll('.subject-stat').forEach(el => el.classList.remove('show'));
+      document.getElementById('mathStat').classList.add('show');
+    };
+    document.getElementById('russianBtn').onclick = function () {
+      document.querySelectorAll('.subject-stat').forEach(el => el.classList.remove('show'));
+      document.getElementById('russianStat').classList.add('show');
+    };
+    document.getElementById('historyBtn').onclick = function () {
+      document.querySelectorAll('.subject-stat').forEach(el => el.classList.remove('show'));
+      document.getElementById('historyStat').classList.add('show');
+    };
+  </script>
+  
+
+      <!-- Достижения -->
+      <div class="bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Достижения</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Грамота 1 -->
+          <div class="bg-gray-100 p-4 rounded-lg shadow-lg">
+            <img src="https://via.placeholder.com/150" alt="Грамота" class="w-full h-36 object-cover rounded-lg mb-4">
+            <p class="text-center text-lg font-semibold">Грамота за победу в олимпиаде</p>
+            <div class="achievement-buttons">
+              <button class="bg-blue-500 text-white">
+                <i class="fas fa-info-circle"></i>
+              </button>
+              <button class="bg-green-500 text-white">
+                <i class="fas fa-print"></i>
+              </button>
+            </div>
+          </div>
+          <!-- Грамота 2 -->
+          <div class="bg-gray-100 p-4 rounded-lg shadow-lg">
+            <img src="https://via.placeholder.com/150" alt="Грамота" class="w-full h-36 object-cover rounded-lg mb-4">
+            <p class="text-center text-lg font-semibold">Медаль за достижения в учебе</p>
+            <div class="achievement-buttons">
+              <button class="bg-blue-500 text-white">
+                <i class="fas fa-info-circle"></i>
+              </button>
+              <button class="bg-green-500 text-white">
+                <i class="fas fa-print"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Динамика оценок с выбором предмета -->
+    <div class="mt-10 bg-white shadow-lg rounded-lg p-6">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Динамика оценок</h2>
+
+      <select id="subjectSelect" class="bg-white border border-gray-300 rounded-lg p-2 mb-6">
+        <option value="math">Математика</option>
+        <option value="russian">Русский язык</option>
+        <option value="history">История</option>
+      </select>
+
+      <canvas id="ratingTrendChart" width="400" height="200"></canvas>
+      <script>
+        const ctx2 = document.getElementById('ratingTrendChart').getContext('2d');
+        let chart = new Chart(ctx2, {
+          type: 'line',
+          data: {
+            labels: ['Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            datasets: [{
+              label: 'Оценки по математике',
+              data: [4.2, 4.5, 4.7, 4.8],
+              fill: false,
+              borderColor: 'rgba(59, 130, 246, 1)',
+              tension: 0.1
+            }]
+          },
+          options: {
+            responsive: true
+          }
+        });
+
+        document.getElementById('subjectSelect').onchange = function () {
+          const selectedSubject = this.value;
+          let newData = [];
+          let newLabel = '';
+          let newColor = '';
+
+          // Данные для графика по предметам
+          if (selectedSubject === 'math') {
+            newLabel = 'Оценки по математике';
+            newData = [4.2, 4.5, 4.7, 4.8];
+            newColor = 'rgba(59, 130, 246, 1)';
+          } else if (selectedSubject === 'russian') {
+            newLabel = 'Оценки по русскому языку';
+            newData = [4.3, 4.6, 4.8, 4.9];
+            newColor = 'rgba(244, 67, 54, 1)';
+          } else if (selectedSubject === 'history') {
+            newLabel = 'Оценки по истории';
+            newData = [4.1, 4.4, 4.6, 4.7];
+            newColor = 'rgba(255, 235, 59, 1)';
+          }
+
+          chart.data.datasets[0].label = newLabel;
+          chart.data.datasets[0].data = newData;
+          chart.data.datasets[0].borderColor = newColor;
+          chart.update();
+        };
+      </script>
+
+    </div>
+  </div>
+
+</body>
+</html>

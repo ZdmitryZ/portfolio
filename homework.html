@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Личный кабинет ученика</title>
+  <link rel="stylesheet" href="output.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white shadow-lg rounded-lg w-full max-w-4xl p-6">
+      <div class="flex">
+        <!-- Левая часть -->
+        <div class="w-1/3 bg-gray-50 rounded-lg p-4 flex flex-col items-center">
+          <img src="https://via.placeholder.com/150" alt="Фотография пользователя" class="rounded-full w-32 h-32 object-cover mb-4 shadow">
+          <h2 class="text-lg font-semibold text-gray-700">Иванов Иван Иванович</h2>
+          <p class="text-sm text-gray-500 mt-1">Роль: Ученик</p>
+          <div class="mt-8">
+            <a href="student-dashboard.html" class="text-blue-500 hover:underline">Вернуться в кабинет</a>
+          </div>
+        </div>
+        <!-- Правая часть -->
+        <div class="w-2/3 pl-6">
+          <!-- Заголовок -->
+          <h1 class="text-3xl font-bold text-gray-800 mb-4">Домашние задания</h1>
+          
+          <!-- Невыполненные задания -->
+          <div class="bg-gray-50 rounded-lg p-4 shadow mb-6">
+            <h2 class="text-lg font-semibold text-gray-700 mb-2">Невыполненные</h2>
+            
+            <!-- Математика -->
+            <div>
+              <h3 class="text-md font-semibold text-gray-700">Математика</h3>
+              <ul class="space-y-2">
+                <li class="p-2 bg-white rounded-lg shadow flex justify-between items-center">
+                  <span>Решите уравнение: <strong>2x + 5 = 15</strong></span>
+                  <span class="text-green-500">Срок: 30.12.2024</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Геометрия -->
+            <div>
+              <h3 class="text-md font-semibold text-gray-700">Математика</h3>
+              <ul class="space-y-2">
+                <li class="p-2 bg-white rounded-lg shadow flex justify-between items-center">
+                  <span>Вычислите площадь треугольника: <strong>основание 6 см, высота 4 см</strong></span>
+                  <span class="text-green-500">Срок: 28.12.2024</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Просроченные задания -->
+          <div class="bg-red-100 rounded-lg p-4 shadow mb-6">
+            <h2 class="text-lg font-semibold text-gray-700 mb-2">Просроченные</h2>
+            
+            <!-- Математика -->
+            <div>
+              <h3 class="text-md font-semibold text-gray-700">Математика</h3>
+              <ul class="space-y-2">
+                <li class="p-2 bg-white rounded-lg shadow flex justify-between items-center">
+                  <span>Таблица умножения: заполните недостающие значения</span>
+                  <span class="text-red-500">Срок: 15.12.2024</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Литература -->
+            <div>
+              <h3 class="text-md font-semibold text-gray-700">Русский язык</h3>
+              <ul class="space-y-2">
+                <li class="p-2 bg-white rounded-lg shadow flex justify-between items-center">
+                  <span>Напишите эссе на тему: <strong>"Что значит быть честным?"</strong></span>
+                  <span class="text-red-500">Срок: 10.12.2024</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Выполненные задания -->
+          <div class="bg-gray-50 rounded-lg p-4 shadow">
+            <h2 class="text-lg font-semibold text-gray-700 mb-2">Выполненные</h2>
+
+            <!-- Литература -->
+            <div>
+              <h3 class="text-md font-semibold text-gray-700">Русский язык</h3>
+              <ul class="space-y-2">
+                <li class="p-2 bg-white rounded-lg shadow flex justify-between items-center">
+                  <span>Разберите по членам предложения: <strong>"На рассвете соловей запел свою песню."</strong></span>
+                  <span class="text-blue-500">Выполнено</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
